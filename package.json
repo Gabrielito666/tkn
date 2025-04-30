@@ -1,0 +1,21 @@
+{
+  "name": "tkn",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "esbuild index.js --bundle --platform=node --outfile=bundle.js --external:clipboardy --minify",
+    "start": "node bundle.js",
+    "dev": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "clipboardy": "^4.0.0",
+    "lek-cryptools": "^3.0.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.3"
+  }
+}
