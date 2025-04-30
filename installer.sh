@@ -1,13 +1,39 @@
-#!bin/bash
+#!/bin/bash
 
-mkdir ~/.tkn
-cd ~/.tkn
-curl bla bla bla desde git
-touch data.enc
+INSTALL_DIR="$HOME/.tkn"
+BASHRC="$HOME/.bashrc"
+BUNDLE_URL="https://raw.githubusercontent.com/Gabrielito666/tkn/main/bundle.js"
 
-echo "export TKN_PATH=~/.tkn/" >> ~/.bashrc
-echo "alias tkn=node ~/.tkn/bundle.js" >> ~/.bashrc
+# Crear carpeta si no existe
+mkdir -p "$INSTALL_DIR"
 
-npm install clipboardy
+# Descargar bundle.js
+curl -sSf "$BUNDLE_URL" -o "$INSTALL_DIR/bundle.js"
+if [ $? -ne 0 ]; then
+  echo "❌ Error: No se pudo descargar bundle.js"
+  exit 1
+fi
 
-source ~/.bashrc
+# Crear archivo de datos si no existe
+touch "$INSTALL_DIR/data.enc"
+
+# Agregar variable de entorno si no existe
+if ! grep -q 'TKN_PATH' "$BASHRC"; then
+  echo "export TKN_PATH=$INSTALL_DIR" >> "$BASHRC"
+fi
+
+# Agregar alias si no existe
+if ! grep -q 'alias tkn=' "$BASHRC"; then
+  echo "alias tkn='node $INSTALL_DIR/bundle.js'" >> "$BASHRC"
+fi
+
+# Instalar clipboardy si no existe globalmente (opcional)
+if ! node -e "require('clipboardy')" 2>/dev/null; then
+  echo "📦 Instalando clipboardy globalmente..."
+  npm install -g clipboardy
+fi
+
+# Aplicar cambios sin reiniciar
+source "$BASHRC"
+
+echo "✅ Instalación completada. Usa 'tkn' en la terminal para comenzar."

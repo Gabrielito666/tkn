@@ -1,20 +1,38 @@
-Este es un gestor de contraseñas seguro que permite almacenar contraseñas de forma segura y obtenerlas al portapapeles descifrandolas con una única contraseña.
+# TKN
 
-Es una app de terminal.
+Este es un gestor de contraseñas seguro que permite almacenar y recuperar contraseñas desde la terminal, cifradas con una única contraseña maestra.
 
-Para instalarlo hay que hacer
+Es una app 100% de terminal.
 
+## 🚀 Instalación
+
+Para instalarlo, abre tu terminal y ejecuta:
+
+```bash
+curl -s https://raw.githubusercontent.com/Gabrielito666/tkn/main/installer.sh | bash
 ```
-curl git bla bla bla installer.sh | bash
+
+Esto descargará el script `bundle.js`, creará la carpeta oculta `~/.tkn/`, instalará lo necesario y configurará un alias llamado `tkn`.
+
+## 🔐 Primer uso
+
+Al ejecutar el comando:
+
+```bash
+tkn
 ```
 
-Al ejecutarlo por primera vez te pedirá que setees una contraseña que será aquella con la que se cifraran todas las demás.
+Se te pedirá que configures una contraseña maestra. Esta será la clave que se usará para cifrar y descifrar tus contraseñas.
 
-Luego al entrar a la app te pedirá la pass para entrar.
+Cada vez que ingreses a la app, deberás escribir esta contraseña para acceder.
 
-En el menú principal tendrás cuatro opciones.
+## 🧭 Menú principal
 
-- create tkn
-- delete tkn
-- get tkn
-- salir
+Una vez dentro, verás el siguiente menú con 4 opciones:
+
+- `create tkn` → Guarda una nueva contraseña
+- `delete tkn` → Elimina una contraseña guardada
+- `get tkn` → Recupera una contraseña (y la copia al portapapeles)
+- `salir` → Cierra la aplicación
+
+¡Eso es todo! Simple, seguro, local y sin conexión a internet.
