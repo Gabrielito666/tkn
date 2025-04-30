@@ -14,9 +14,6 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
-# Crear archivo de datos si no existe
-touch "$INSTALL_DIR/data.enc"
-
 # Agregar variable de entorno si no existe
 if ! grep -q 'TKN_PATH' "$BASHRC"; then
   echo "export TKN_PATH=$INSTALL_DIR" >> "$BASHRC"
@@ -27,11 +24,7 @@ if ! grep -q 'alias tkn=' "$BASHRC"; then
   echo "alias tkn='node $INSTALL_DIR/bundle.js'" >> "$BASHRC"
 fi
 
-# Instalar clipboardy si no existe globalmente (opcional)
-if ! node -e "require('clipboardy')" 2>/dev/null; then
-  echo "📦 Instalando clipboardy globalmente..."
-  npm install -g clipboardy
-fi
+npm install clipboardy --prefix $INSTALL_DIR
 
 # Aplicar cambios sin reiniciar
 source "$BASHRC"
