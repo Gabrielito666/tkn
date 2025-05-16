@@ -23,10 +23,6 @@ if ! command -v npm &> /dev/null; then
   exit 1
 fi
 
-if ! command -v nvm &> /dev/null; then
-  echo "❌ nvm no está instalado. Instálalo antes de continuar."
-  exit 1
-fi
 
 # Descargar bundle.js
 echo "⬇️ Descargando bundle.js..."
