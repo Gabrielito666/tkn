@@ -4,9 +4,6 @@ const methods = require('./lib/methods');
 
 const main = async() =>
 {
-
-    await systemConfig.init();
-
     const command = process.argv[2];
 
     const params = {};
@@ -16,6 +13,7 @@ const main = async() =>
         case "create":
         case "c":
 
+            await systemConfig.init();
             params.tag = flags.tag();
             methods.createTkn(params);
 
@@ -23,6 +21,7 @@ const main = async() =>
         case "get":
         case "g":
 
+            await systemConfig.init();
             params.tag = flags.tag();
             params.log = flags.log();
             params.clipboard = flags.clipboard() || !flags.log();
@@ -32,22 +31,24 @@ const main = async() =>
         case "delete":
         case "d":
 
+            await systemConfig.init();
             params.tag = flags.tag();
             methods.deleteTkn(params);
 
         break;
         case "help":
         case "h":
-
-            console.log("help");
+            
+            methods.help();
 
         break;
         case undefined:
+            await systemConfig.init();
             methods.menu();
         break;
 
         default:
-            console.log("default");
+            methods.default();
         break;
     }
 }
