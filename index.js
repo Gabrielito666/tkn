@@ -15,39 +15,40 @@ const main = async() =>
     {
         case "create":
         case "c":
+
             params.tag = flags.tag();
+            methods.createTkn(params);
 
-            await methods.createTkn(params);
-            break;
-
+        break;
         case "get":
         case "g":
+
             params.tag = flags.tag();
             params.log = flags.log();
             params.clipboard = flags.clipboard() || !flags.log();
+            methods.getTkn(params);
 
-            await methods.getTkn(params);
-            break;
+        break;
         case "delete":
         case "d":
+
             params.tag = flags.tag();
+            methods.deleteTkn(params);
 
-            await methods.deleteTkn(params);
-            break;
-
+        break;
         case "help":
         case "h":
-            console.log("help");
-            break;
 
+            console.log("help");
+
+        break;
         case undefined:
-            await methods.menu();
-            break;
+            methods.menu();
+        break;
 
         default:
             console.log("default");
-            break;
+        break;
     }
-    methods.exit();
 }
 main();
